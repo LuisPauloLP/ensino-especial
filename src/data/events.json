@@ -1,56 +1,74 @@
 [
     {
         "id": "f7j3q1x8v5n2l0c9",
-        "title": "Palestra - Blockchain: Além das Criptomoedas",
-        "description": "O blockchain é uma tecnologia de registro distribuído que ganhou popularidade principalmente por ser a base das criptomoedas, como o Bitcoin. No entanto, suas aplicações vão muito além das moedas digitais",
-        "comments": "Apresentantes: Noah Thompson, Arquiteto de Blockchain e Liam Carter, Desenvolvedor de Blockchain",
+        "title": "Palestra - Saúde e Inclusão: Desafios e Soluções para Pessoas com Deficiência",
+        "description": "Explora os principais desafios enfrentados por pessoas com deficiência em termos de acesso a cuidados de saúde e reabilitação",
+        "comments": "Palestrantes: Dr. Carlos Medeiros (Médico especialista em medicina física e reabilitação) e Dra. Clara Rodrigues (Advogada especializada em direitos das pessoas com deficiência)",
         "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC",
         "date": "2024-09-02", 
         "time": "20:00:00"
     },
     {
         "id": "k2z5d8m4r1p6s7t3",
-        "title": "JISC",
-        "description": "Os Jogos Interatléticas do Sul Catarinense, são um evento esportivo regional que reúne atletas de diversas modalidades esportivas do sul do estado de Santa Catarina",
-        "comments": "Modalidade: Futsal Masculino - Oitavas de final",
-        "location": "Ginasio José Antonio Carrilho - UNESC, Criciúma - SC",
+        "title": "Feira de Acessibilidade e Inclusão - Acesso Total",
+        "description": "Um evento dedicado à exposição de produtos e serviços voltados para a acessibilidade e inclusão. Inclui demonstrações de tecnologias assistivas, adaptações de ambientes e serviços especializados",
+        "comments": "Organização: Associação Brasileira de Tecnologia Assistiva (ABTA)",
+        "location": "Centro de Eventos José Ijair Conti, Criciúma - SC",
         "date": "2024-09-06",
-        "time": "19:00:00"
+        "time": "09:00:00"
     },
     {
         "id": "x9b6a0p2r4n8q3v1",
-        "title": "Palestra - O Impacto da Cibersegurança no Mundo Digital",
-        "comments": "Apresentantes: Ella Evans, Analista de Segurança da Informação e Grace Rogers, Engenheiro de Segurança",
-        "description": "A cibersegurança é crucial em um mundo onde a digitalização está presente em quase todos os aspectos da vida pessoal e profissional.",
+        "title": "Palestra - Cuidado Integral para Pessoas com Transtornos do Espectro Autista",
+        "description": "Dra. Maria Oliveira abordará intervenções psicossociais, Dr. Ricardo Almeida discutirá o impacto dos TEAs no comportamento e bem-estar, e Ana Luiza Ferreira explorará terapias ocupacionais e seu papel no desenvolvimento",
+        "comments": "Palestrantes: Dra. Maria Oliveira (Psicóloga com especialização em autismo), Dr. Ricardo Almeida (Psiquiatra especializado em TEA), e Ana Luiza Ferreira (Terapeuta ocupacional)",
         "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC",
         "date": "2024-09-09",
         "time": "19:30:00"
     },
     {
         "id": "l1s4w7j0c2q8z3k9",
-        "title": "JISC",
-        "description": "Os Jogos Interatléticas do Sul Catarinense, são um evento esportivo regional que reúne atletas de diversas modalidades esportivas do sul do estado de Santa Catarina",
-        "comments": "Modalidade: Vôlei Feminino - Quartas de final",
-        "location": "Ginasio José Antonio Carrilho - UNESC, Criciúma - SC",
+        "title": "Exposição de Arte - Cores e Formas da Inclusão",
+        "description": "Exposição que destaca o trabalho artístico de pessoas com deficiências, incluindo pinturas, esculturas e fotografias. Uma plataforma para expressão criativa e visibilidade",
+        "comments": "Organização: Galeria de Arte Inclusiva",
+        "location": "Museu de Arte de Criciúma, Criciúma - SC",
         "date": "2024-09-10",
-        "time": "20:30:00"
+        "time": "14:30:00"
     },
     {
         "id": "n8v2k5m3t7x0r4q1",
-        "title": "ANA CASTELA - MAILING",
-        "description": "Ana Flávia Castela, também conhecida pela alcunha Boiadeira, é uma cantora, compositora e instrumentista brasileira.",
-        "comments": "Show da cantora e compositora Ana Castela",
-        "location": "MAILING LAGOA, Balneário Gaivota - SC",
+        "title": "Evento de Networking - Conectando Talentos: Inclusão no Mercado de Trabalho",
+        "description": "Evento de networking que conecta pessoas com deficiências a mentores e redes de apoio profissional. Inclui sessões de orientação e oportunidades de networking com empresas inclusivas",
+        "comments": "Organização: Rede de Inclusão Profissional",
+        "location": "Centro de Convenções de Criciúma, Criciúma - SC",
         "date": "2024-09-15",
         "time": "15:00:00"
     },
     {
         "id": "q9x2v5n3l8r1s4k7",
-        "title": "Innova Talk 2024",
-        "description": "Teremos um panorama geral sobre o futuro das empresas e do desenvolvimento de softwares, abordando também como aplicar a tecnologia em estratégias para grandes empresas no digital",
-        "comments": "Na edição de 2024 do Innova Talk, vamos falar sobre futuro, e sobre como ele será #InnCrível!",
-        "location": "CRIO - Centro de Inovação Criciúma, Criciúma - SC",
+        "title": "Palestra - Acessibilidade e Saúde: Criando Ambientes Inclusivos",
+        "description": "Esta palestra examina como criar ambientes acessíveis e inclusivos",
+        "comments": "Palestrantes: Arquiteta Ana Costa (Especializada em acessibilidade e design universal), Dr. Eduardo Lima (Engenheiro civil focado em acessibilidade urbana), e Mariana Santos (Consultora em design inclusivo)",
+        "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC",
         "date": "2024-09-18",
         "time": "19:00:00"
+    },
+    {
+        "id": "q9x2v5n3l8r1s4k7",
+        "title": "Palestra - Tecnologia e Inovação para Melhorar a Vida Diária de Pessoas com Deficiências",
+        "description": "A palestra explora como a tecnologia e inovações recentes estão transformando a vida diária de pessoas com deficiências, com foco em dispositivos assistivos, aplicativos e outras soluções tecnológicas",
+        "comments": "Palestrantes: Engenheira Roberta Almeida (Especialista em tecnologia assistiva), Dr. Paulo Campos (Pesquisador em inovações tecnológicas para acessibilidade) e Juliana Costa (Desenvolvedora de aplicativos e dispositivos adaptativos)",
+        "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC",
+        "date": "2024-09-19",
+        "time": "13:00:00"
+    },
+     {
+        "id": "q9x2v5n3l8r1s4k7",
+        "title": "Programa de Capacitação - Habilidades para o Futuro: Capacitação Inclusiva",
+        "description": "Cursos e programas de capacitação voltados para o desenvolvimento de habilidades específicas, adaptados para as necessidades de pessoas com deficiências. Inclui informática, habilidades de comunicação e gestão financeira",
+        "comments": "Organização: Instituto de Capacitação Inclusiva",
+        "location": "Senac Criciúma, Criciúma - SC",
+        "date": "2024-09-19",
+        "time": "14:30:00"
     }
 ]
