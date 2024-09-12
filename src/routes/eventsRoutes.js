@@ -51,19 +51,6 @@ router.get('/data/:date', (req, res) => {
     res.json(evento);
 });
 
-
-// // Retornar uma data especifica
-// // GET /personagens?raca=humano
-// router.get('/', (req, res) => {
-//     var personagem = personagensDB(function(element){
-//         return element.raca == raca;
-//     })
-//     if(!personagem) return res.status(404).json({
-//         "erro": "Personagem não encontrado"
-//     })
-//     res.json(personagem)
-// })
-
 // Inserir um novo evento
 // POST "/eventos" BODY { "id": "h7r9k2j5w4v8q0b1", "title": "Palestra - Computação na Nuvem: Infraestrutura e Escalabilidade", "comments": "Apresentantes: Mariana Costa, Especialista em Escalabilidade de Sistemas e Pedro Almeida, Consultor de Nuvem e Transformação Digital", "description": "Exploraremos os fundamentos e as melhores práticas da Computação na Nuvem, focando na infraestrutura e na escalabilidade dos sistemas", "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC", "date": "2024-09-20", "time":  "19:30:00"}
 router.post('/', (req, res) => {
