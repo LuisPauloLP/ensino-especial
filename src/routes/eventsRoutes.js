@@ -79,7 +79,7 @@ router.post('/', (req, res) => {
 })
 
 // Substituir um evento
-// PUT "/eventos/2" BODY { "id": "n3p6f1x9m2z4l8r7", "title": "Palestra - "Inteligência Artificial: Desafios e Oportunidades"", "comments": "Apresentantes: Gabriela Santos, Cientista de Dados e Especialista em IA e Rafael Oliveira, Engenheiro de Inteligência Artificial", "description": "Esta palestra abordará os aspectos fundamentais da Inteligência Artificial (IA), explorando tanto os desafios quanto as oportunidades que essa tecnologia emergente oferece", "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC", "date": "2024-09-09", "time":  "20:00:00"}
+// PUT "/eventos/2" BODY { "id": "n3p6f1x9m2z4l8r7", "title": "Palestra - A Importância da Autoestima e da Autonomia para Pessoas com Deficiências", "comments": "Palestrantes: Dra. Juliana Martins (Psicóloga com foco em autoestima e empoderamento), Marcos Pereira (Coach de vida especializado em autonomia pessoal) e Sílvia Costa (Defensora de direitos e ativista de autonomia)", "description": "Esta palestra discute a importância da autoestima e da autonomia para pessoas com deficiências, abordando estratégias para promover a autoconfiança e independência, e como essas qualidades impactam a qualidade de vida", "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC", "date": "2024-09-09", "time":  "20:00:00"}
 router.put('/:id', (req, res) => {
     const id = req.params.id
     const novoEvento = req.body
