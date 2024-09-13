@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 })
 
 // Retornar uma data especifica
-//GET /eventos/data/2024-09-09
+//GET /eventos/data/2024-09-19
 router.get('/data/:date', (req, res) => {
     const data = req.params.date;
     const evento = eventosDB.find(event => event.date === data);
@@ -52,7 +52,7 @@ router.get('/data/:date', (req, res) => {
 });
 
 // Inserir um novo evento
-// POST "/eventos" BODY { "id": "h7r9k2j5w4v8q0b1", "title": "Palestra - Computação na Nuvem: Infraestrutura e Escalabilidade", "comments": "Apresentantes: Mariana Costa, Especialista em Escalabilidade de Sistemas e Pedro Almeida, Consultor de Nuvem e Transformação Digital", "description": "Exploraremos os fundamentos e as melhores práticas da Computação na Nuvem, focando na infraestrutura e na escalabilidade dos sistemas", "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC", "date": "2024-09-20", "time":  "19:30:00"}
+// POST "/eventos" BODY { "id": "h7r9k2j5w4v8q0b1", "title": "Atividades Recreativas - Diversão e Movimento: Esportes Adaptados", "comments": "Organização: Comitê Paralímpico Catarinense", "description": "Evento que promove competições e atividades recreativas adaptadas, como esportes paralímpicos e jogos inclusivos. Focado em promover a atividade física e a diversão para todos", "location": "Ginásio Municipal de Criciúma, Criciúma - SC", "date": "2024-09-19", "time":  "13:30:00"}
 router.post('/', (req, res) => {
     const evento = req.body
     console.log(evento);
