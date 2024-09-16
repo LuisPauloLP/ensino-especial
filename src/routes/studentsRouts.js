@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 })
 
 // Retornar uma turma especifica
-//GET /estudante/class
+//GET /estudantes/turma/1
 router.get('/turma/:class', (req, res) => {
     const turma = req.params.class;
     const estudante = estudantesDB.find(student => student.class === turma);
