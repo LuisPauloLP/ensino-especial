@@ -98,4 +98,139 @@ router.get('/', (req, res) =>{
  *             schema:
  *               $ref: '#/components/schemas/Student'
  *       404:
-... (136 linhas)
+ *         description: Estudante não encontrado
+ */
+
+// GET "/students/a3b7k9p2r5"
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    studentsDB = loadStudents();
+    var student = studentsDB.find((student) => student.id === id )
+    if(!student) return res.status(404).json({
+        "erro": "Aluno não encontrado!"
+    })
+    res.json(student)
+})
+
+/**
+ * @swagger
+ * /students:
+ *   post:
+ *     summary: Cria um novo estudante
+ *     tags: [Students]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Student'
+ *     responses:
+ *       200:
+ *         description: O estudante foi criado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Student'
+ */
+
+// POST "/students" BODY { "id": "h7r9k2j5w4", "name": "giuberto", "age": "24", "class": "2", "course": "Direito", "parents": "jouel e heby", "phone_number":  "48 7394 3566",  "address": "rua Gabriel Asevado",  "special_needs": "autismo",  "status": "on"}
+router.post('/', (req, res) => {
+    const newStudent = {
+        id: uuidv4(),
+        ...req.body
+    }
+    console.log(newStudent);
+    studentsDB = loadStudents();
+    studentsDB.push(newStudent)
+    let result = saveStudents();
+    console.log(result);
+    return res.json(newStudent)
+})
+
+/**
+ * @swagger
+ * /students/{id}:
+ *  put:
+ *    summary: Atualiza um estudante pelo ID
+ *    tags: [Students]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: ID do estudante
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Student'
+ *    responses:
+ *      200:
+ *        description: O estudante foi atualizado com sucesso
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Student'
+ *      404:
+ *        description: Estudante não encontrado
+ */
+
+// PUT "/students/h7r9k2j5w4" BODY { "id": "i85l0k1x5w4", "name": "Andressa", "age": "27", "class": "2", "course": "Direito", "parents": "Mollie e Marcos", "phone_number":  "11 7394 3566",  "address": "rua Machado de Macedo",  "special_needs": "autismo",  "status": "on"}
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const newStudent = req.body
+    studentsDB = loadStudents();
+    const currentStudent = studentsDB.find((student) => student.id === id )
+    const currentIndex = studentsDB.findIndex((student) => student.id === id )
+    if(!currentStudent) 
+        return res.status(404).json({
+        "erro": "Aluno não encontrado!"
+    })
+    studentsDB[currentIndex] = newStudent
+    let result = saveStudents();
+    console.log(result);
+    return res.json(newStudent)
+})
+
+/**
+ * @swagger
+ * /students/{id}:
+ *   delete:
+ *     summary: Remove um estudante pelo ID
+ *     tags: [Students]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do estudante
+ *     responses:
+ *       200:
+ *         description: O estudante foi removido com sucesso
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Student'
+ *       404:
+ *         description: Estudante não encontrado
+ */
+
+// DELETE "/students/i85l0k1x5w4"
+router.delete('/:id', (req, res) => {
+    const id = req.params.id
+    studentsDB = loadStudents();
+    const currentStudent = studentsDB.find((student) => student.id === id )
+    const currentIndex = studentsDB.findIndex((student) => student.id === id )
+    if(!currentStudent) return res.status(404).json({
+        "erro": "Aluno não encontrado!"
+    })
+    var deletado = studentsDB.splice(currentIndex, 1)
+    let result = saveStudents();
+    console.log(result);
+    res.json(deletado)
+})
+
+module.exports = router
