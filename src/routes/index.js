@@ -2,11 +2,9 @@ const express = require('express')
 const router = express.Router()
 const eventsRoutes = require('./eventsRoutes') //Luis Paulo
 const studentsRoutes = require('./studentsRoutes') //Miguel
-// const countriesRoutes = require('./countriesRoutes')
 
 router.use(express.json())
-router.use('/eventos', eventsRoutes) //Luis Paulo
-router.use('/estudantes', studentsRoutes) // Miguel
-// router.use('/countries', countriesRoutes)
+router.use('/events', eventsRoutes) //Luis Paulo
+router.use('/students', studentsRoutes) // Miguel
 
 module.exports = router
