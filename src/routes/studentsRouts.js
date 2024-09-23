@@ -1,133 +1,101 @@
-const express = require('express');
-const router = express.Router();
-const estudantesDB = require('../data/students.json');
+const express = require('express')
+const router = express.Router()
+const { v4: uuidv4 } = require('uuid')
+const fs = require('fs');
 
-// Retornar todos os estudantes
-// GET "/estudantes"
+var studentsDB = loadStudents();
+
+// Função carrega estudantes a partir do arquivo JSON
+function loadStudents() {  
+    try {
+      return JSON.parse(fs.readFileSync('./db/students.json', 'utf8'));
+    } catch (err) {
+      return [];
+    }
+  }
+// Função para salvar os estudantes no arquivo JSON
+function saveStudents() {
+    try {
+      fs.writeFileSync('./db/students.json', JSON.stringify(studentsDB, null, 2));
+      return "Saved"
+    } catch (err) {
+      return "Not saved";
+    }
+  }
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Student:
+ *       type: object
+ *       required:
+ *         - id
+ *         - nome
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: O id é gerado automáticamente pelo cadasdro do estudante
+ *         nome:
+ *           type: string
+ *           description: Nome do Estudante
+  *       example:
+ *         id: "1329"
+ *         nome: João Menezes
+ */
+
+ /**
+  * @swagger
+  * tags:
+  *   name: Students
+  *   description: 
+  *     API de Controle de Estudantes
+  *     **Por Miguel Lumertz**
+  */
+
+ /**
+ * @swagger
+ * /students:
+ *   get:
+ *     summary: Retorna uma lista de todos os estudantes
+ *     tags: [Students]
+ *     responses:
+ *       200:
+ *         description: A lista de estudantes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Student'
+ */
+
+// GET "/students"
 router.get('/', (req, res) =>{
     console.log("getroute");
-    res.json(estudantesDB);
+    studentsDB = loadStudents();
+    res.json(studentsDB);
 })
 
-// Retornar um estudante especifico
-// GET /estudantes/1
-router.get('/:id', (req, res) => {
-    const id = req.params.id
-    var estudante = estudantesDB[id]
-    if(!estudante) return res.status(404).json({
-        "erro": "estudante não encontrado"
-    })
-    res.json(estudante)
-})
-
-// Retornar uma turma especifica
-//GET /estudantes/turma/1
-router.get('/turma/:class', (req, res) => {
-    const turma = req.params.class;
-    const estudante = estudantesDB.find(student => student.class === turma);
-    if (!estudante) {
-        return res.status(404).json({ "erro": "turma não encontrada" });
-    }
-    res.json(estudante);
-});
-
-
-// Inserir um novo estudante
-// POST "/estudantes" BODY { "id": "h7r9k2j5w4", "name": "giuberto", "age": "24", "class": "2", "course": "Direito", "parents": "jouel e heby", "phone_number":  "48 7394 3566",  "address": "rua Gabriel Asevado",  "special_needs": "autismo",  "status": "on"}
-router.post('/', (req, res) => {
-    const estudante = req.body
-    console.log(estudante);
-    if(!estudante.id) return res.status(400).json({
-        "erro": "estudante precisa ter um 'id'"
-    })
-    if(!estudante.name) return res.status(400).json({
-        "erro": "estudante precisa ter um 'nome'"
-    })
-    if(!estudante.age) return res.status(400).json({
-        "erro": "estudante precisa ter uma 'idade'"
-    })
-    if(!estudante.class) return res.status(400).json({
-        "erro": "estudante precisa ter uma 'turma'"
-    })
-    if(!estudante.course) return res.status(400).json({
-        "erro": "estudante precisa ter um 'curso'"
-    })
-    if(!estudante.perents) return res.status(400).json({
-        "erro": "estudante precisa ter algum 'parente'"
-    })
-    if(!estudante.phone_number) return res.status(400).json({
-        "erro": "estudante precisa ter um 'numero de telefone'"
-    })
-    if(!estudante.address) return res.status(400).json({
-        "erro": "estudante precisa ter um 'endereco'"
-    })
-    if(!estudante.special_needs) return res.status(400).json({
-        "erro": "estudante precisa ter uma 'necessidade especial'"
-    })
-    if(!estudante.status) return res.status(400).json({
-        "erro": "estudante precisa ter um 'status'"
-    })
-    
-    estudantesDB.push(estudante)
-    return res.json(estudante)
-})
-
-// Substituir um evento
-// PUT "/estudantes/2" BODY { "id": "h7r9k2j5w4", "name": "giuberto", "age": "24", "class": "2", "course": "Direito", "parents": "jouel e heby", "phone_number":  "48 7394 3566",  "address": "rua Gabriel Asevado",  "special_needs": "autismo",  "status": "on",}
-router.put('/:id', (req, res) => {
-    const id = req.params.id
-    const novoEstudante = req.body
-    const atualEstudante = estudantesDB[id]
-    if(!atualEstudante) 
-        return res.status(404).json({
-        "erro": "Estudante não encontrado"
-    })
-
-    if(!estudante.id) return res.status(400).json({
-        "erro": "estudante precisa ter um 'id'"
-    })
-    if(!estudante.name) return res.status(400).json({
-        "erro": "estudante precisa ter um 'nome'"
-    })
-    if(!estudante.age) return res.status(400).json({
-        "erro": "estudante precisa ter uma 'idade'"
-    })
-    if(!estudante.class) return res.status(400).json({
-        "erro": "estudante precisa ter uma 'turma'"
-    })
-    if(!estudante.course) return res.status(400).json({
-        "erro": "estudante precisa ter um 'curso'"
-    })
-    if(!estudante.perents) return res.status(400).json({
-        "erro": "estudante precisa ter algum 'parente'"
-    })
-    if(!estudante.phone_number) return res.status(400).json({
-        "erro": "estudante precisa ter um 'numero de telefone'"
-    })
-    if(!estudante.address) return res.status(400).json({
-        "erro": "estudante precisa ter um 'endereco'"
-    })
-    if(!estudante.special_needs) return res.status(400).json({
-        "erro": "estudante precisa ter uma 'necessidade especial'"
-    })
-    if(!estudante.status) return res.status(400).json({
-        "erro": "estudante precisa ter um 'status'"
-    })
-
-    estudantesDB[id] = novoEstudante
-    return res.json(novoEstudante)
-})
-
-// Deletar um estudante
-// DELETE "/estudantes/0"
-router.delete('/:id', (req, res) => {
-    const id = req.params.id
-    const estudante = estudantesDB[id]
-    if(!estudante) return res.status(404).json({
-        "erro": "estudante não encontrado"
-    })
-    var deletado = estudantesDB.splice(id, 1)
-    res.json(deletado)
-})
-
-module.exports = router
+/**
+ * @swagger
+ * /students/{id}:
+ *   get:
+ *     summary: Retorna um estudante pelo ID
+ *     tags: [Students]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do estudante
+ *     responses:
+ *       200:
+ *         description: Um estudante pelo ID
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Student'
+ *       404:
+... (136 linhas)
