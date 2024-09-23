@@ -1,17 +1,18 @@
 {
-  "name": "exemplo_api",
+  "name": "api-aluno",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Luís Augusto Paulo",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "express": "^4.21.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^10.0.0"
   }
 }
