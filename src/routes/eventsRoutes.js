@@ -124,7 +124,7 @@ router.get('/:id', (req, res) => {
 
 /**
  * @swagger
- * /events/{date}:
+ * /events/date/{date}:
  *   get:
  *     summary: Retorna um evento pela data
  *     tags: [Events]
@@ -147,16 +147,19 @@ router.get('/:id', (req, res) => {
  *         description: Data do evento não encontrada
  */
 
-//GET /events/2024-09-19
-router.get('/:date', (req, res) => {
+//GET /events/date/2024-09-19
+router.get('/date/:date', (req, res) => {
   const date = req.params.date;
     eventsDB = loadEvents();
-    var event = eventsDB.find((event) => event.date === date);
-    if (!event) return res.status(404).json({
+
+    var event = eventsDB.filter((event) => event.date === date);
+    if (event.lenght === 0){
+      return res.status(404).json({
         "erro": "Data não encontrada!"
     });
-    res.json(event);
-})
+}
+res.json(event);
+});
 
 /**
  * @swagger
