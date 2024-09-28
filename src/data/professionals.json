@@ -1,0 +1,42 @@
+[
+  {
+    "id": "31a87641-2a2c-43ba-b831-5c34db4645e9",
+    "name": "Carla Fernandes",
+    "specialty": "Pediatra",
+    "contact": "carlinha.ped@gmail.com",
+    "phone_number": "48 9684 7458",
+    "status": "on"
+  },
+  {
+    "id": "c12486fb-1395-4e8b-90ed-b4b00d401045",
+    "name": "Roberta Albuquerque",
+    "specialty": "Fonoaudiológica",
+    "contact": "roberta.fono@gmail.com",
+    "phone_number": "48 9559 4646",
+    "status": "on"
+  },
+  {
+    "id": "183e10e3-5c6c-4ecf-af6e-02d0b4487be3",
+    "name": "Paula Gonçaza",
+    "specialty": "Fisioterapeuta",
+    "contact": "paula.fisio@gmail.com",
+    "phone_number": "48 9757 2525",
+    "status": "on"
+  },
+  {
+    "id": "f2451dc5-0425-4be0-951a-df4e61da6a13",
+    "name": "João Paulo",
+    "specialty": "Clínica Geral",
+    "contact": "joao.geral@gmail.com",
+    "phone_number": "48 9339 5656",
+    "status": "off"
+  },
+  {
+    "id": "16f4d986-1084-4fb0-baa5-8a772bfc763b",
+    "name": "Carla dos Santos",
+    "specialty": "Pediatra",
+    "contact": "cdossantos.ped@gmail.com",
+    "phone_number": "48 9292 4645",
+    "status": "on"
+  }
+]
