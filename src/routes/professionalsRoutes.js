@@ -1,26 +1,30 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { v4: uuidv4 } = require('uuid')
-const fs = require('fs');
+const { v4: uuidv4 } = require("uuid");
+const fs = require("fs");
 
 var professionalsDB = loadProfessionals();
 
 // Função carrega estudantes a partir do arquivo JSON
 function loadProfessionals() {
-    try {
-      return JSON.parse(fs.readFileSync('./src/db/professionals.json', 'utf8'));
-    } catch (err) {
-      return [];
-    }
+  try {
+    return JSON.parse(fs.readFileSync("./src/db/professionals.json", "utf8"));
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
 }
 // Função para salvar os estudantes no arquivo JSON
 function saveProfessionals() {
-    try {
-      fs.writeFileSync('./src/db/professionals.json', JSON.stringify(professionalsDB, null, 2));
-      return "Saved"
-    } catch (err) {
-      return "Not saved";
-    }
+  try {
+    fs.writeFileSync(
+      "./src/db/professionals.json",
+      JSON.stringify(professionalsDB, null, 2)
+    );
+    return "Saved";
+  } catch (err) {
+    return "Not saved";
+  }
 }
 
 /**
@@ -64,16 +68,16 @@ function saveProfessionals() {
  *         status: on
  */
 
- /**
-  * @swagger
-  * tags:
-  *   name: Professionals
-  *   description: 
-  *     API de Controle de Profissionais
-  *     **Por Maria Machado**
-  */
+/**
+ * @swagger
+ * tags:
+ *   name: Professionals
+ *   description:
+ *     API de Controle de Profissionais
+ *     **Por Maria Machado**
+ */
 
- /**
+/**
  * @swagger
  * /professionals:
  *   get:
@@ -90,10 +94,10 @@ function saveProfessionals() {
  *                 $ref: '#/components/schemas/Professional'
  */
 //GET todos os profissionais
-router.get('/', (req, res) =>{
-    professionalsDB = loadProfessionals();
-    res.json(professionalsDB);
-})
+router.get("/", (req, res) => {
+  professionalsDB = loadProfessionals();
+  res.json(professionalsDB);
+});
 
 /**
  * @swagger
@@ -119,16 +123,18 @@ router.get('/', (req, res) =>{
  *         description: Profissional não encontrado!
  */
 // GET profissionais especifico por id
-router.get('/:id', (req, res) => {
-    const id = req.params.id
-    professionalsDB = loadProfessionals();
-    var profissional = professionalsDB.find((professionals) => professionals.id === id)
-    if(!profissional) return res.status(404).json({
-        "erro": "Profissional não encontrado!"
-    })
-    res.json(profissional)
-})
-
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  professionalsDB = loadProfessionals();
+  var profissional = professionalsDB.find(
+    (professionals) => professionals.id === id
+  );
+  if (!profissional)
+    return res.status(404).json({
+      erro: "Profissional não encontrado!",
+    });
+  res.json(profissional);
+});
 
 /**
  * @swagger
@@ -154,15 +160,18 @@ router.get('/:id', (req, res) => {
  *         description: Profissional não encontrado!
  */
 // GET profissional especifico por nome
-router.get('/name/:name', (req, res) => {
-    const name = req.params.name
-    professionalsDB = loadProfessionals();
-    var profissional = professionalsDB.filter((professionals) => professionals.name === name)
-    if(profissional.length === 0) return res.status(404).json({
-        "erro": "Profissional não encontrado!"
-    })
-    res.json(profissional)
-})
+router.get("/name/:name", (req, res) => {
+  const name = req.params.name;
+  professionalsDB = loadProfessionals();
+  var profissional = professionalsDB.filter(
+    (professionals) => professionals.name === name
+  );
+  if (profissional.length === 0)
+    return res.status(404).json({
+      erro: "Profissional não encontrado!",
+    });
+  res.json(profissional);
+});
 
 /**
  * @swagger
@@ -195,33 +204,37 @@ router.get('/name/:name', (req, res) => {
  *         description: Profissional precisa ter um 'status'!
  */
 // POST cadastro de profissionais
-router.post('/', (req, res) => {
-    const newProfessional = {
-        id: uuidv4(),
-        ...req.body
-    }
-    professionalsDB = loadProfessionals();
-    if(!newProfessional.name) return res.status(400).json({
-        "erro": "Profissional precisa ter um 'nome'!"
-    })
-    if(!newProfessional.specialty) return res.status(400).json({
-        "erro": "Profissional precisa ter uma 'especialidade'!"
-    })
-    if(!newProfessional.contact) return res.status(400).json({
-        "erro": "Profissional precisa ter uma 'email de contato'!"
-    })
-    if(!newProfessional.phone_number) return res.status(400).json({
-        "erro": "Profissional precisa ter uma 'número de contato'!"
-    })
-    if(!newProfessional.status) return res.status(400).json({
-        "erro": "Profissional precisa ter um 'status'!"
-    })
-    professionalsDB.push(newProfessional)
-    let resultado = saveProfessionals();
-    console.log(resultado)
-    return res.json(newProfessional)
-})
-
+router.post("/", (req, res) => {
+  const newProfessional = {
+    id: uuidv4(),
+    ...req.body,
+  };
+  professionalsDB = loadProfessionals();
+  if (!newProfessional.name)
+    return res.status(400).json({
+      erro: "Profissional precisa ter um 'nome'!",
+    });
+  if (!newProfessional.specialty)
+    return res.status(400).json({
+      erro: "Profissional precisa ter uma 'especialidade'!",
+    });
+  if (!newProfessional.contact)
+    return res.status(400).json({
+      erro: "Profissional precisa ter uma 'email de contato'!",
+    });
+  if (!newProfessional.phone_number)
+    return res.status(400).json({
+      erro: "Profissional precisa ter uma 'número de contato'!",
+    });
+  if (!newProfessional.status)
+    return res.status(400).json({
+      erro: "Profissional precisa ter um 'status'!",
+    });
+  professionalsDB.push(newProfessional);
+  let resultado = saveProfessionals();
+  console.log(resultado);
+  return res.json(newProfessional);
+});
 
 /**
  * @swagger
@@ -253,22 +266,26 @@ router.post('/', (req, res) => {
  *        description: Profissional não encontrado!
  */
 // UPDATE do registro nas funções
-router.put('/:id', (req, res) => {
-    const id = req.params.id
-    const newProfessional = req.body 
-    professionalsDB = loadProfessionals();
-    const currentProfessional = professionalsDB.find((professionals) => professionals.id === id)
-    const currentIndex = professionalsDB.findIndex((professionals) => professionals.id === id)
-    if(!currentProfessional) 
-        return res.status(404).json({
-        "erro": "Profissional não encontrado!"
-    })
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const newProfessional = req.body;
+  professionalsDB = loadProfessionals();
+  const currentProfessional = professionalsDB.find(
+    (professionals) => professionals.id === id
+  );
+  const currentIndex = professionalsDB.findIndex(
+    (professionals) => professionals.id === id
+  );
+  if (!currentProfessional)
+    return res.status(404).json({
+      erro: "Profissional não encontrado!",
+    });
 
-    professionalsDB[currentIndex]  = newProfessional 
-    let resultado = saveProfessionals();
-    console.log(resultado)
-    return res.json(newProfessional)
-})
+  professionalsDB[currentIndex] = newProfessional;
+  let resultado = saveProfessionals();
+  console.log(resultado);
+  return res.json(newProfessional);
+});
 
 /**
  * @swagger
@@ -294,19 +311,23 @@ router.put('/:id', (req, res) => {
  *         description: Profissional não encontrado!
  */
 // DELETE cadastro de profissionais
-router.delete('/:id', (req, res) => {
-    const id = req.params.id
-    professionalsDB = loadProfessionals();
-    const professional = professionalsDB.find((professionals) => professionals.id === id)
-    const currentIndex = professionalsDB.findIndex((professionals) => professionals.id === id)
-    if(!professional) return res.status(404).json({
-        "erro": "Profissional não encontrado!"
-    })
-    var deletado = professionalsDB.splice(currentIndex, 1)
-    let resultado = saveProfessionals();
-    console.log(resultado)
-    res.json(deletado)
-})
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  professionalsDB = loadProfessionals();
+  const professional = professionalsDB.find(
+    (professionals) => professionals.id === id
+  );
+  const currentIndex = professionalsDB.findIndex(
+    (professionals) => professionals.id === id
+  );
+  if (!professional)
+    return res.status(404).json({
+      erro: "Profissional não encontrado!",
+    });
+  var deletado = professionalsDB.splice(currentIndex, 1);
+  let resultado = saveProfessionals();
+  console.log(resultado);
+  res.json(deletado);
+});
 
-
-module.exports = router
+module.exports = router;

@@ -1,27 +1,28 @@
-const express = require('express')
-const router = express.Router()
-const { v4: uuidv4 } = require('uuid')
-const fs = require('fs');
+const express = require("express");
+const router = express.Router();
+const { v4: uuidv4 } = require("uuid");
+const fs = require("fs");
 
 var eventsDB = loadEvents();
 
 // Função que carrega os eventos a partir do arquivo JSON
-function loadEvents() {  
-    try {
-      return JSON.parse(fs.readFileSync('./db/events.json', 'utf8'));
-    } catch (err) {
-      return [];
-    }
+function loadEvents() {
+  try {
+    return JSON.parse(fs.readFileSync("./src/db/events.json", "utf8"));
+  } catch (err) {
+    console.log(err);
+    return [];
   }
+}
 // Função para salvar os eventos no arquivo JSON
 function saveEvents() {
-    try {
-      fs.writeFileSync('./db/events.json', JSON.stringify(eventsDB, null, 2));
-      return "Saved"
-    } catch (err) {
-      return "Not saved";
-    }
+  try {
+    fs.writeFileSync("./src/db/events.json", JSON.stringify(eventsDB, null, 2));
+    return "Saved";
+  } catch (err) {
+    return "Not saved";
   }
+}
 
 /**
  * @swagger
@@ -54,16 +55,16 @@ function saveEvents() {
  *         location: Auditório Ruy Hulse - UNESC, Criciúma - SC
  */
 
- /**
-  * @swagger
-  * tags:
-  *   name: Events
-  *   description: 
-  *     API de Controle de Eventos
-  *     **Por Luís Augusto Paulo**
-  */
+/**
+ * @swagger
+ * tags:
+ *   name: Events
+ *   description:
+ *     API de Controle de Eventos
+ *     **Por Luís Augusto Paulo**
+ */
 
- /**
+/**
  * @swagger
  * /events:
  *   get:
@@ -81,11 +82,11 @@ function saveEvents() {
  */
 
 // GET "/events"
-router.get('/', (req, res) =>{
-    console.log("getroute");
-    studentsDB = loadEvents();
-    res.json(eventsDB);
-})
+router.get("/", (req, res) => {
+  console.log("getroute");
+  studentsDB = loadEvents();
+  res.json(eventsDB);
+});
 
 /**
  * @swagger
@@ -112,15 +113,16 @@ router.get('/', (req, res) =>{
  */
 
 // GET "/events/k2z5d8m4r1p6s7t3"
-router.get('/:id', (req, res) => {
-    const id = req.params.id
-    eventsDB = loadEvents();
-    var event = eventsDB.find((event) => event.id === id )
-    if(!event) return res.status(404).json({
-        "erro": "Evento não encontrado!"
-    })
-    res.json(event)
-})
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  eventsDB = loadEvents();
+  var event = eventsDB.find((event) => event.id === id);
+  if (!event)
+    return res.status(404).json({
+      erro: "Evento não encontrado!",
+    });
+  res.json(event);
+});
 
 /**
  * @swagger
@@ -148,17 +150,17 @@ router.get('/:id', (req, res) => {
  */
 
 //GET /events/date/2024-09-19
-router.get('/date/:date', (req, res) => {
+router.get("/date/:date", (req, res) => {
   const date = req.params.date;
-    eventsDB = loadEvents();
+  eventsDB = loadEvents();
 
-    var event = eventsDB.filter((event) => event.date === date);
-    if (event.lenght === 0){
-      return res.status(404).json({
-        "erro": "Data não encontrada!"
+  var event = eventsDB.filter((event) => event.date === date);
+  if (event.lenght === 0) {
+    return res.status(404).json({
+      erro: "Data não encontrada!",
     });
-}
-res.json(event);
+  }
+  res.json(event);
 });
 
 /**
@@ -183,18 +185,18 @@ res.json(event);
  */
 
 // POST "/events" BODY { "id": "h7r9k2j5w4v8q0b1", "title": "Atividades Recreativas - Diversão e Movimento: Esportes Adaptados", "comments": "Organização: Comitê Paralímpico Catarinense", "description": "Evento que promove competições e atividades recreativas adaptadas, como esportes paralímpicos e jogos inclusivos. Focado em promover a atividade física e a diversão para todos", "location": "Ginásio Municipal de Criciúma, Criciúma - SC", "date": "2024-09-19", "time":  "13:30:00"}
-router.post('/', (req, res) => {
-    const newEvent = {
-        id: uuidv4(),
-        ...req.body
-    }
-    console.log(newEvent);
-    eventsDB = loadEvents();
-    eventsDB.push(newEvent)
-    let result = saveEvents();
-    console.log(result);
-    return res.json(newEvent)
-})
+router.post("/", (req, res) => {
+  const newEvent = {
+    id: uuidv4(),
+    ...req.body,
+  };
+  console.log(newEvent);
+  eventsDB = loadEvents();
+  eventsDB.push(newEvent);
+  let result = saveEvents();
+  console.log(result);
+  return res.json(newEvent);
+});
 
 /**
  * @swagger
@@ -227,21 +229,21 @@ router.post('/', (req, res) => {
  */
 
 // PUT "/students/h7r9k2j5w4v8q0b1" BODY { "id": "n3p6f1x9m2z4l8r7", "title": "Palestra - A Importância da Autoestima e da Autonomia para Pessoas com Deficiências", "comments": "Palestrantes: Dra. Juliana Martins (Psicóloga com foco em autoestima e empoderamento), Marcos Pereira (Coach de vida especializado em autonomia pessoal) e Sílvia Costa (Defensora de direitos e ativista de autonomia)", "description": "Esta palestra discute a importância da autoestima e da autonomia para pessoas com deficiências, abordando estratégias para promover a autoconfiança e independência, e como essas qualidades impactam a qualidade de vida", "location": "Auditório Ruy Hulse - UNESC, Criciúma - SC", "date": "2024-09-09", "time":  "20:00:00"}
-router.put('/:id', (req, res) => {
-    const id = req.params.id
-    const newEvent = req.body
-    eventsDB = loadEvents();
-    const currentEvent = eventsDB.find((event) => event.id === id )
-    const currentIndex = eventsDB.findIndex((event) => event.id === id )
-    if(!currentEvent) 
-        return res.status(404).json({
-        "erro": "Evento não encontrado!"
-    })
-    eventsDB[currentIndex] = newEvent
-    let result = saveEvents();
-    console.log(result);
-    return res.json(newEvent)
-})
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const newEvent = req.body;
+  eventsDB = loadEvents();
+  const currentEvent = eventsDB.find((event) => event.id === id);
+  const currentIndex = eventsDB.findIndex((event) => event.id === id);
+  if (!currentEvent)
+    return res.status(404).json({
+      erro: "Evento não encontrado!",
+    });
+  eventsDB[currentIndex] = newEvent;
+  let result = saveEvents();
+  console.log(result);
+  return res.json(newEvent);
+});
 
 /**
  * @swagger
@@ -268,18 +270,19 @@ router.put('/:id', (req, res) => {
  */
 
 // DELETE "/events/n3p6f1x9m2z4l8r7"
-router.delete('/:id', (req, res) => {
-    const id = req.params.id
-    eventsDB = loadEvents();
-    const currentEvent = eventsDB.find((event) => event.id === id )
-    const currentIndex = eventsDB.findIndex((event) => event.id === id )
-    if(!currentEvent) return res.status(404).json({
-        "erro": "Evento não encontrado!"
-    })
-    var deletado = eventsDB.splice(currentIndex, 1)
-    let result = saveEvents();
-    console.log(result);
-    res.json(deletado)
-})
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  eventsDB = loadEvents();
+  const currentEvent = eventsDB.find((event) => event.id === id);
+  const currentIndex = eventsDB.findIndex((event) => event.id === id);
+  if (!currentEvent)
+    return res.status(404).json({
+      erro: "Evento não encontrado!",
+    });
+  var deletado = eventsDB.splice(currentIndex, 1);
+  let result = saveEvents();
+  console.log(result);
+  res.json(deletado);
+});
 
-module.exports = router
+module.exports = router;
