@@ -1,3 +1,3 @@
-Usar o comando para abrir o Powershell fora da pasta "src".
+Usar o comando para abrir o Powershell FORA da pasta "src".
 
 Para inicializar-se usar o comando "npm start".
