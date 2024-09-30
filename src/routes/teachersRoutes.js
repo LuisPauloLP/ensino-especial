@@ -7,7 +7,6 @@ const swaggerUi = require('swagger-ui-express');
 
 var teachersDB = loadTeachers();
 
-// Função carrega professores a partir do arquivo JSON
 function loadTeachers() {
   try {
     return JSON.parse(fs.readFileSync('./src/db/dbteachers.json', 'utf8'));
@@ -17,7 +16,6 @@ function loadTeachers() {
   }
 }
 
-// Função para salvar os professores no arquivo JSON
 function saveTeachers() {
   try {
     fs.writeFileSync('./src/db/dbteachers.json', JSON.stringify(teachersDB, null, 2));
@@ -29,7 +27,7 @@ function saveTeachers() {
 
 const swaggerOptions = {
   swaggerDefinition: {
-    openapi: "3.0.0", // Ensure you're using the correct version
+    openapi: "3.0.0",
     info: {
       title: "Teachers API",
       description: "API for managing teachers",

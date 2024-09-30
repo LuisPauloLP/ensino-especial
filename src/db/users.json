@@ -1,0 +1,56 @@
+[
+  {
+    "id": "AkEWvvGoZkFSNBx80jdfAJlkMzc1cP8Qr9AjYPPe",
+    "name": "Joani Girardi Teixeira",
+    "email": "joaniteixeira@gmail.com",
+    "user": "joani.girardi",
+    "pwd": "2Pby9QrvmvjjrXDLEB0c",
+    "level": "user",
+    "status": "on"
+  },
+  {
+    "id": "2sPgI9sHp4WpRiybvVrlK7FtiGUvPvuVk0yZZfEI",
+    "name": "Gabriel Luiz Roma Warmling",
+    "email": "gabrielluiz@gmail.com",
+    "user": "gabriel.luiz",
+    "pwd": "FfzFOc1Rbt9Qz0HhLe5d",
+    "level": "admin",
+    "status": "on"
+  },
+  {
+    "id": "9RzLaADBGZRzCat16GCvD3WZN4FxZYc87ytajdkL",
+    "name": "Nick Kuerten",
+    "email": "nickkuerten@gmail.com",
+    "user": "nick.kuerten",
+    "pwd": "nh8CtmfoDSVGtPN0vo8u",
+    "level": "user",
+    "status": "on"
+  },
+  {
+    "id": "HRFcGde3fUpxUfKuZqB7pDzwtZexTHgBEAcSglIE",
+    "name": "Silvana Vitale Spilere",
+    "email": "silvanaviltale@gmail.com",
+    "user": "silvana.vitale",
+    "pwd": "f5zOQM7m7Ee916tXK9Mf",
+    "level": "user",
+    "status": "off"
+  },
+  {
+    "id": "eEuGZCiA5TMPBxQ8FaEFEkYcD73Uf4YJP5LvDU2Y",
+    "name": "Elias Eduardo Romagna",
+    "email": "eliasromagna@gmail.com",
+    "user": "elias.romagna",
+    "pwd": "45C5LT1ERgCHvAepQOJ2",
+    "level": "user",
+    "status": "off"
+  },
+  {
+    "id": "6",
+    "name": "Novo Nome",
+    "email": "novoemail@example.com",
+    "user": "novo.usuario",
+    "pwd": "senhaSegura",
+    "level": "user",
+    "status": "on"
+  }
+]
