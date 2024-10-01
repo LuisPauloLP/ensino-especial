@@ -24,7 +24,7 @@ const options = {
             
             ### TD 01    
             Disciplina: Desenvolvimento de Alicações II 2024.09 Turma 01  
-            Equipe: Luís Paulo, Maria Fernanda Esteves, Miguel Lumertz, Natali Elias e Rafaela Nicoski   
+            Equipe: Luís Paulo, Maria Fernanda Esteves, Miguel Lumertz e Natali Elias
 			`,
       license: {
         name: 'Licenciado para Desenvolvimento de Aplicações II',
