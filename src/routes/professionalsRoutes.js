@@ -31,7 +31,7 @@ function saveProfessionals() {
  * @swagger
  * components:
  *   schemas:
- *     Professional:
+ *     Profissional:
  *       type: object
  *       required:
  *         - id
@@ -91,7 +91,7 @@ function saveProfessionals() {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Professional'
+ *                 $ref: '#/components/schemas/Profissional'
  */
 //GET todos os profissionais
 router.get("/", (req, res) => {
@@ -118,7 +118,7 @@ router.get("/", (req, res) => {
  *         contens:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Professional'
+ *               $ref: '#/components/schemas/Profissional'
  *       404:
  *         description: Profissional não encontrado!
  */
@@ -155,7 +155,7 @@ router.get("/:id", (req, res) => {
  *         contens:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Professional'
+ *               $ref: '#/components/schemas/Profissional'
  *       404:
  *         description: Profissional não encontrado!
  */
@@ -184,14 +184,14 @@ router.get("/name/:name", (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Professional'
+ *             $ref: '#/components/schemas/Profissional'
  *     responses:
  *       200:
  *         description: O profissional foi criado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Professional'
+ *               $ref: '#/components/schemas/Profissional'
  *       404_name_not_found:
  *         description: Profissional precisa ter um 'nome'!
  *       404_specialty_not_found:
@@ -254,14 +254,14 @@ router.post("/", (req, res) => {
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Professional'
+ *            $ref: '#/components/schemas/Profissional'
  *    responses:
  *      200:
  *        description: O profissional foi atualizado com sucesso
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Professional'
+ *              $ref: '#/components/schemas/Profissional'
  *      404:
  *        description: Profissional não encontrado!
  */
@@ -306,7 +306,7 @@ router.put("/:id", (req, res) => {
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Professional'
+ *              $ref: '#/components/schemas/Profissional'
  *       404:
  *         description: Profissional não encontrado!
  */
