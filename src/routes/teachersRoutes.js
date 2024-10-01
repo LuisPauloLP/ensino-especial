@@ -11,7 +11,7 @@ function loadTeachers() {
   try {
     return JSON.parse(fs.readFileSync('./src/db/dbteachers.json', 'utf8'));
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return [];
   }
 }
@@ -133,6 +133,49 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 /**
  * @swagger
+ * /teachers/search:
+ *   get:
+ *     summary: Retorna uma lista de professores com base na pesquisa por nome
+ *     tags: [Teachers]
+ *     parameters:
+ *       - in: query
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nome do professor para buscar
+ *     responses:
+ *       200:
+ *         description: A lista de professores encontrados
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Teacher'
+ *       404:
+ *         description: Nenhum professor encontrado com esse nome
+ */
+
+router.get('/search', (req, res) => {
+  const { name } = req.query;  
+  if (!name) return res.status(400).json({ "erro": "O parâmetro 'name' é obrigatório para a pesquisa" });
+
+  teachersDB = loadTeachers();
+  
+  const filteredTeachers = teachersDB.filter(teacher => 
+    teacher.name.toLowerCase().includes(name.toLowerCase())
+  );
+
+  if (filteredTeachers.length === 0) {
+    return res.status(404).json({ "erro": "Nenhum professor encontrado com esse nome!" });
+  }
+
+  res.json(filteredTeachers);
+});
+
+/**
+ * @swagger
  * /teachers:
  *   get:
  *     summary: Retorna uma lista de todos os professores
@@ -148,7 +191,6 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *                 $ref: '#/components/schemas/Teacher'
  */
 
-// GET "/teachers"
 router.get('/', (req, res) => {
   teachersDB = loadTeachers();
   res.json(teachersDB);
@@ -178,7 +220,6 @@ router.get('/', (req, res) => {
  *         description: Professor não encontrado
  */
 
-// GET "/teachers/:id"
 router.get('/:id', (req, res) => {
   const id = req.params.id;
   teachersDB = loadTeachers();
@@ -208,7 +249,6 @@ router.get('/:id', (req, res) => {
  *               $ref: '#/components/schemas/Teacher'
  */
 
-// POST "/teachers"
 router.post('/', (req, res) => {
   const newTeacher = {
     id: uuidv4(),
@@ -251,7 +291,6 @@ router.post('/', (req, res) => {
  *        description: Professor não encontrado
  */
 
-// PUT "/teachers/:id"
 router.put('/:id', (req, res) => {
   const id = req.params.id;
   const newTeacher = req.body;
@@ -259,10 +298,10 @@ router.put('/:id', (req, res) => {
   const currentTeacher = teachersDB.find((teacher) => teacher.id === id);
   const currentIndex = teachersDB.findIndex((teacher) => teacher.id === id);
   if (!currentTeacher) return res.status(404).json({ "erro": "Professor não encontrado!" });
-  teachersDB[currentIndex] = newTeacher;
+  teachersDB[currentIndex] = { id, ...newTeacher }; // Mantém o ID e atualiza os demais campos
   let result = saveTeachers();
   console.log(result);
-  return res.json(newTeacher);
+  return res.json(teachersDB[currentIndex]);
 });
 
 /**
@@ -289,7 +328,6 @@ router.put('/:id', (req, res) => {
  *         description: Professor não encontrado
  */
 
-// DELETE "/teachers/:id"
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
   teachersDB = loadTeachers();
@@ -303,3 +341,4 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
+
